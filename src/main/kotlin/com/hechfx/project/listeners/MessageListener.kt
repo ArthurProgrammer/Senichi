@@ -32,8 +32,13 @@ class MessageListener : ListenerAdapter() {
         )
 
         for (command in commands) {
-            if (Configuration.PREFIX + command.name == Configuration.PREFIX + commandArg || Configuration.PREFIX + command.aliases == Configuration.PREFIX + commandArg) {
+            if ((Configuration.PREFIX + command.name) == (Configuration.PREFIX + commandArg)) {
                 command.onCommand(event, context = CommandContext(event, args, rawArgs, strippedArgs))
+            }
+            for (alias in command.aliases) {
+                if (Configuration.PREFIX + alias == Configuration.PREFIX + commandArg) {
+                    command.onCommand(event, context = CommandContext(event, args, rawArgs, strippedArgs))
+                }
             }
         }
     }
