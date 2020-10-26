@@ -1,5 +1,6 @@
 package com.hechfx.project.listeners
 
+import com.hechfx.project.api.Reply
 import com.hechfx.project.commands.CommandContext
 import com.hechfx.project.commands.`fun`.ChatbotCommand
 import com.hechfx.project.commands.discord.AvatarCommand
@@ -12,6 +13,13 @@ class MessageListener : ListenerAdapter() {
     override fun onGuildMessageReceived(event: GuildMessageReceivedEvent) {
         if (event.author.isBot) return
         if (!event.message.channelType.isGuild) return
+
+        if (event.message.contentRaw == "<@${Configuration.CLIENT_ID}>" || event.message.contentRaw == "<@!${Configuration.CLIENT_ID}>") {
+                event.message.channel.sendMessage(
+                    "Hi, i'm Senichi. My prefix is `!`"
+                )
+            return
+        }
 
         if (!event.message.contentRaw.contains(Configuration.PREFIX)) return
 
