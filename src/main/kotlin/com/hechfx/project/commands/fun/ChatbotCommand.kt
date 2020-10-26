@@ -7,7 +7,7 @@ import com.hechfx.project.commands.CommandBuilder
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import okhttp3.Request
 
-class ChatbotCommand : CommandBuilder("chatbot", "fun") {
+class ChatbotCommand : CommandBuilder("chatbot", arrayOf("chatwbot"),"fun") {
     override fun onCommand(event: GuildMessageReceivedEvent, context: CommandContext) {
         val question: String
 

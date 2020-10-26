@@ -7,7 +7,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import java.lang.management.ManagementFactory
 import java.lang.management.RuntimeMXBean
 
-class BotinfoCommand: CommandBuilder("botinfo", "misc") {
+class BotinfoCommand: CommandBuilder("botinfo", arrayOf("infobot"),"misc") {
     override fun onCommand(event: GuildMessageReceivedEvent, context: CommandContext) {
         val runtimeMXBean: RuntimeMXBean = ManagementFactory.getRuntimeMXBean()
         val uptime = runtimeMXBean.uptime

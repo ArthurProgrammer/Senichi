@@ -6,7 +6,7 @@ import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import java.awt.Color
 
-class AvatarCommand: CommandBuilder("avatar", "discord") {
+class AvatarCommand: CommandBuilder("avatar", arrayOf("userpfp"),"discord") {
     override fun onCommand(event: GuildMessageReceivedEvent, context: CommandContext) {
 
         val user = context.message.mentionedUsers.firstOrNull { it.asMention == context.rawArgs.getOrNull(0)?.replace("!", "") } ?: context.args.getOrNull(0)?.toLong()?.let {
