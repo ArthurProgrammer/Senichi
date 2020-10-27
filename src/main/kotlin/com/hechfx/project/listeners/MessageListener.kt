@@ -1,14 +1,11 @@
 package com.hechfx.project.listeners
 
 import com.hechfx.project.commands.CommandContext
-import com.hechfx.project.commands.`fun`.CatCommand
-import com.hechfx.project.commands.`fun`.ChatbotCommand
-import com.hechfx.project.commands.`fun`.DogCommand
-import com.hechfx.project.commands.discord.AvatarCommand
-import com.hechfx.project.commands.discord.UserinfoCommand
+import com.hechfx.project.commands.`fun`.*
+import com.hechfx.project.commands.dev.*
+import com.hechfx.project.commands.discord.*
 import com.hechfx.project.commands.misc.*
 import com.hechfx.project.config.Configuration
-import com.hechfx.project.config.Configuration.OWNER_ID
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 
@@ -45,7 +42,7 @@ class MessageListener : ListenerAdapter() {
         for (command in commands) {
             if ((Configuration.PREFIX + command.name) == (Configuration.PREFIX + commandArg)) {
                 if (command.dev == true) {
-                    if (event.author.idLong != OWNER_ID) {
+                    if (event.author.idLong != Configuration.OWNER_ID) {
                         event.channel.sendMessage("You can't use this command!").queue()
                         return
                     }
