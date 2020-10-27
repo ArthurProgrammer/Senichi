@@ -19,10 +19,10 @@ class UserinfoCommand: CommandBuilder("userinfo", arrayOf("infouser", "memberinf
             .setFooter("Command executed by ${context.author.asTag}", context.author.effectiveAvatarUrl)
             .addField("Tag do Discord", user.asTag, true)
             .addField("ID do usuário", user.id, true)
-            .addField("Conta foi criada", "${user.timeCreated.dayOfMonth}/${user.timeCreated.monthValue}/${user.timeCreated.year} ${user.timeCreated.hour}", true)
+            .addField("Conta foi criada", "${user.timeCreated.dayOfMonth}/${user.timeCreated.monthValue}/${user.timeCreated.year} ${user.timeCreated.hour}:${user.timeCreated.minute}", true)
             if (context.guild.isMember(user)) {
                 val member = context.guild.getMember(user)
-                embed.addField("Entrou aqui", "há ${member?.timeJoined?.dayOfMonth}/${member?.timeJoined?.monthValue}/${member?.timeCreated?.year} ${member?.timeCreated?.hour}", true)
+                embed.addField("Entrou aqui", "${member?.timeJoined?.dayOfMonth}/${member?.timeJoined?.monthValue}/${member?.timeJoined?.year} ${member?.timeJoined?.hour}:${member?.timeJoined?.minute}", true)
                 embed.setColor(member?.color ?: Color(114, 137, 218))
             } else {
                 embed.setColor(Color(114, 137, 218))
