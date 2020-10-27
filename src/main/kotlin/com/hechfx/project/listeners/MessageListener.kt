@@ -4,6 +4,7 @@ import com.hechfx.project.api.Reply
 import com.hechfx.project.commands.CommandContext
 import com.hechfx.project.commands.`fun`.ChatbotCommand
 import com.hechfx.project.commands.discord.AvatarCommand
+import com.hechfx.project.commands.discord.UserinfoCommand
 import com.hechfx.project.commands.misc.*
 import com.hechfx.project.config.Configuration
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
@@ -28,6 +29,7 @@ class MessageListener : ListenerAdapter() {
         val commands = listOf(
             // ======/ DISCORD \======
             AvatarCommand(),
+            UserinfoCommand(),
             // ======/ FUN \======
             ChatbotCommand(),
             // ======/ MISC \======
