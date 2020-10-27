@@ -29,6 +29,12 @@ class BotinfoCommand: CommandBuilder("botinfo", arrayOf("infobot"),"misc") {
             ).build(context),
             Reply(
                 "Uptime: `$hours h, $minutes m, $seconds s`"
+            ).build(context),
+            Reply(
+                "Users: `${context.jda.users.size}`"
+            ).build(context),
+            Reply(
+                "Guilds: `${context.jda.guilds.size}`"
             ).build(context)
         )
         context.textChannel.sendMessage(replies.joinToString("\n")).queue()

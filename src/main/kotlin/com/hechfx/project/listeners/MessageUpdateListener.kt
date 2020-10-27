@@ -1,8 +1,10 @@
 package com.hechfx.project.listeners
 
 import com.hechfx.project.commands.CommandContext
+import com.hechfx.project.commands.`fun`.CatCommand
 import com.hechfx.project.commands.`fun`.ChatbotCommand
 import com.hechfx.project.commands.discord.AvatarCommand
+import com.hechfx.project.commands.discord.UserinfoCommand
 import com.hechfx.project.commands.misc.*
 import com.hechfx.project.config.Configuration
 import net.dv8tion.jda.api.events.message.guild.GuildMessageUpdateEvent
@@ -27,8 +29,10 @@ class MessageUpdateListener : ListenerAdapter() {
         val commands = listOf(
             // ======/ DISCORD \======
             AvatarCommand(),
+            UserinfoCommand(),
             // ======/ FUN \======
             ChatbotCommand(),
+            CatCommand(),
             // ======/ MISC \======
             BotinfoCommand(),
             PingCommand(),
@@ -37,6 +41,12 @@ class MessageUpdateListener : ListenerAdapter() {
 
         for (command in commands) {
             if ((Configuration.PREFIX + command.name) == (Configuration.PREFIX + commandArg)) {
+                if (command.dev == true) {
+                    if (event.author.idLong != Configuration.OWNER_ID) {
+                        event.channel.sendMessage("You can't use this command!").queue()
+                        return
+                    }
+                }
                 command.onCommand(
                     CommandContext(
                         rawArgs,

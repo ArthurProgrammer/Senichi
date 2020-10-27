@@ -2,6 +2,7 @@ package com.hechfx.project.commands.discord
 
 import com.hechfx.project.commands.CommandBuilder
 import com.hechfx.project.commands.CommandContext
+import com.hechfx.project.config.Configuration.DISCORD_BLURPLE
 import net.dv8tion.jda.api.EmbedBuilder
 import java.awt.Color
 
@@ -23,9 +24,9 @@ class UserinfoCommand: CommandBuilder("userinfo", arrayOf("infouser", "memberinf
             if (context.guild.isMember(user)) {
                 val member = context.guild.getMember(user)
                 embed.addField("Entrou aqui", "${member?.timeJoined?.dayOfMonth}/${member?.timeJoined?.monthValue}/${member?.timeJoined?.year} ${member?.timeJoined?.hour}:${member?.timeJoined?.minute}", true)
-                embed.setColor(member?.color ?: Color(114, 137, 218))
+                embed.setColor(member?.color ?: DISCORD_BLURPLE)
             } else {
-                embed.setColor(Color(114, 137, 218))
+                embed.setColor(DISCORD_BLURPLE)
             }
 
         context.textChannel.sendMessage(embed.build()).queue()
