@@ -19,7 +19,8 @@ class BotinfoCommand: CommandBuilder("botinfo", arrayOf("infobot"),"misc") {
 
         val replies = listOf(
             Reply(
-                "Shard: `${context.jda.shardInfo.shardId} (Guild)/${context.jda.shardManager?.shardsTotal} (Total)`"
+                "Shard: `${context.jda.shardInfo.shardId} (Guild)/${context.jda.shardManager?.shardsTotal} (Total)`",
+                    mention = true
             ).build(context),
             Reply(
                 "RestPing: `${context.jda.restPing.complete()}ms`"

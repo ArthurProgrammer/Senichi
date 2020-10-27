@@ -11,5 +11,6 @@ class CommandContext(
     var message: Message,
     var jda: JDA,
     var author: User,
-    var httpClient: OkHttpClient
+    var member: Member,
+    var httpClient: OkHttpClient,
 )

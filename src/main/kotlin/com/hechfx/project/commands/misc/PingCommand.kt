@@ -9,7 +9,8 @@ class PingCommand : CommandBuilder("ping", arrayOf("latency"),"misc") {
     override fun onCommand(context: CommandContext) {
         val replies = listOf(
             Reply(
-                "API: `${context.jda.gatewayPing}ms`"
+                "API: `${context.jda.gatewayPing}ms`",
+                    mention = true
             ).build(context),
             Reply(
                 "BOT: `${context.jda.restPing.complete()}ms`"

@@ -38,7 +38,8 @@ class ChatbotCommand : CommandBuilder("chatbot", arrayOf("chatwbot"),"fun") {
         if (res.code() == 200) {
             context.textChannel.sendMessage(
                 Reply(
-                    answer,
+                        answer,
+                        mention = true
                 ).build(context)
             ).queue()
         }

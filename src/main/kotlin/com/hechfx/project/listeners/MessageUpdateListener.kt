@@ -2,6 +2,7 @@ package com.hechfx.project.listeners
 
 import com.hechfx.project.commands.CommandContext
 import com.hechfx.project.commands.`fun`.*
+import com.hechfx.project.commands.administration.ClearCommand
 import com.hechfx.project.commands.discord.*
 import com.hechfx.project.commands.misc.*
 import com.hechfx.project.config.Configuration
@@ -25,17 +26,19 @@ class MessageUpdateListener : ListenerAdapter() {
         val rawArgs = event.message.contentRaw.substring(Configuration.PREFIX.length).trim().split(" ").drop(1)
         val commandArg = argsl.first()
         val commands = listOf(
-            // ======/ DISCORD \======
-            AvatarCommand(),
-            UserinfoCommand(),
-            // ======/ FUN \======
-            ChatbotCommand(),
-            CatCommand(),
-            DogCommand(),
-            // ======/ MISC \======
-            BotinfoCommand(),
-            PingCommand(),
-            InviteCommand()
+                // ======/ ADMIN \======
+                ClearCommand(),
+                // ======/ DISCORD \======
+                AvatarCommand(),
+                UserinfoCommand(),
+                // ======/ FUN \======
+                ChatbotCommand(),
+                CatCommand(),
+                DogCommand(),
+                // ======/ MISC \======
+                BotinfoCommand(),
+                PingCommand(),
+                InviteCommand()
         )
 
         for (command in commands) {
@@ -48,13 +51,14 @@ class MessageUpdateListener : ListenerAdapter() {
                 }
                 command.onCommand(
                     CommandContext(
-                        rawArgs,
-                        event.guild,
-                        event.channel,
-                        event.message,
-                        event.jda,
-                        event.author,
-                        event.jda.httpClient
+                            rawArgs,
+                            event.guild,
+                            event.channel,
+                            event.message,
+                            event.jda,
+                            event.author,
+                            event.member!!,
+                            event.jda.httpClient
                     )
                 )
             }
@@ -62,13 +66,14 @@ class MessageUpdateListener : ListenerAdapter() {
                 if (Configuration.PREFIX + alias == Configuration.PREFIX + commandArg) {
                     command.onCommand(
                         CommandContext(
-                            rawArgs,
-                            event.guild,
-                            event.channel,
-                            event.message,
-                            event.jda,
-                            event.author,
-                            event.jda.httpClient
+                                rawArgs,
+                                event.guild,
+                                event.channel,
+                                event.message,
+                                event.jda,
+                                event.author,
+                                event.member!!,
+                                event.jda.httpClient
                         )
                     )
                 }
