@@ -16,6 +16,6 @@ class PingCommand : CommandBuilder("ping", arrayOf("latency"),"misc") {
             ).build(context)
         )
 
-        context.textChannel.sendMessage(replies.joinToString("\n"))
+        context.textChannel.sendMessage(replies.joinToString("\n")).queue()
     }
 }

@@ -10,6 +10,6 @@ class InviteCommand: CommandBuilder("invite", arrayOf("adicionar", "add"), "misc
             Reply(
                 "Obrigado por querer me adicionar, basta apertar no link abaixo!\n\nhttps://discord.com/api/oauth2/authorize?client_id=758128536908988436&permissions=51264&scope=bot"
             ).build(context)
-        )
+        ).queue()
     }
 }

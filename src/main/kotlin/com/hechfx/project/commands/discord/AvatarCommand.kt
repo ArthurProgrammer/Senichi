@@ -27,7 +27,7 @@ class AvatarCommand: CommandBuilder("avatar", arrayOf("userpfp"),"discord") {
             .setColor(Color(17, 238, 176))
             .setFooter("Command executed by ${context.author.asTag}", context.author.effectiveAvatarUrl)
             .build()
-        context.textChannel.sendMessage(embed)
+        context.textChannel.sendMessage(embed).queue()
 
     }
 }

@@ -41,7 +41,7 @@ class ChatbotCommand : CommandBuilder("chatbot", arrayOf("chatwbot"),"fun") {
                 Reply(
                     answer,
                 ).build(context)
-            )
+            ).queue()
         }
     }
 }
