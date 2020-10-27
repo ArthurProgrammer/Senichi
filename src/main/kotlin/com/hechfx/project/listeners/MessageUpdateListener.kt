@@ -1,10 +1,8 @@
 package com.hechfx.project.listeners
 
 import com.hechfx.project.commands.CommandContext
-import com.hechfx.project.commands.`fun`.CatCommand
-import com.hechfx.project.commands.`fun`.ChatbotCommand
-import com.hechfx.project.commands.discord.AvatarCommand
-import com.hechfx.project.commands.discord.UserinfoCommand
+import com.hechfx.project.commands.`fun`.*
+import com.hechfx.project.commands.discord.*
 import com.hechfx.project.commands.misc.*
 import com.hechfx.project.config.Configuration
 import net.dv8tion.jda.api.events.message.guild.GuildMessageUpdateEvent
@@ -33,6 +31,7 @@ class MessageUpdateListener : ListenerAdapter() {
             // ======/ FUN \======
             ChatbotCommand(),
             CatCommand(),
+            DogCommand(),
             // ======/ MISC \======
             BotinfoCommand(),
             PingCommand(),
@@ -54,7 +53,8 @@ class MessageUpdateListener : ListenerAdapter() {
                         event.channel,
                         event.message,
                         event.jda,
-                        event.author
+                        event.author,
+                        event.jda.httpClient
                     )
                 )
             }
@@ -67,7 +67,8 @@ class MessageUpdateListener : ListenerAdapter() {
                             event.channel,
                             event.message,
                             event.jda,
-                            event.author
+                            event.author,
+                            event.jda.httpClient
                         )
                     )
                 }

@@ -3,6 +3,7 @@ package com.hechfx.project.listeners
 import com.hechfx.project.commands.CommandContext
 import com.hechfx.project.commands.`fun`.CatCommand
 import com.hechfx.project.commands.`fun`.ChatbotCommand
+import com.hechfx.project.commands.`fun`.DogCommand
 import com.hechfx.project.commands.discord.AvatarCommand
 import com.hechfx.project.commands.discord.UserinfoCommand
 import com.hechfx.project.commands.misc.*
@@ -34,6 +35,7 @@ class MessageListener : ListenerAdapter() {
             // ======/ FUN \======
             ChatbotCommand(),
             CatCommand(),
+            DogCommand(),
             // ======/ MISC \======
             BotinfoCommand(),
             PingCommand(),
@@ -55,7 +57,8 @@ class MessageListener : ListenerAdapter() {
                         event.channel,
                         event.message,
                         event.jda,
-                        event.author
+                        event.author,
+                        event.jda.httpClient
                     )
                 )
             }
@@ -68,7 +71,8 @@ class MessageListener : ListenerAdapter() {
                             event.channel,
                             event.message,
                             event.jda,
-                            event.author
+                            event.author,
+                            event.jda.httpClient
                         )
                     )
                 }

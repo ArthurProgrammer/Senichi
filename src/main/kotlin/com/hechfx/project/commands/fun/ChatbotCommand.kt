@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.hechfx.project.commands.CommandContext
 import com.hechfx.project.api.Reply
 import com.hechfx.project.commands.CommandBuilder
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import okhttp3.Request
 
 class ChatbotCommand : CommandBuilder("chatbot", arrayOf("chatwbot"),"fun") {
@@ -21,7 +20,7 @@ class ChatbotCommand : CommandBuilder("chatbot", arrayOf("chatwbot"),"fun") {
             question = context.rawArgs.joinToString(" ")
         }
 
-        val client = context.jda.httpClient
+        val client = context.httpClient
 
         val request = Request.Builder()
             .url("https://some-random-api.ml/chatbot?message=${question.replace(" ", "+")}")
