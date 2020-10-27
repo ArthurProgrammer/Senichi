@@ -6,16 +6,16 @@ import com.hechfx.project.commands.CommandBuilder
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 
 class PingCommand : CommandBuilder("ping", arrayOf("latency"),"misc") {
-    override fun onCommand(event: GuildMessageReceivedEvent, context: CommandContext) {
+    override fun onCommand(context: CommandContext) {
         val replies = listOf(
             Reply(
-                "API: `${event.jda.gatewayPing}ms`"
+                "API: `${context.jda.gatewayPing}ms`"
             ).build(context),
             Reply(
-                "BOT: `${event.jda.restPing.complete()}ms`"
+                "BOT: `${context.jda.restPing.complete()}ms`"
             ).build(context)
         )
 
-        context.sendMessage(replies.joinToString("\n"))
+        context.textChannel.sendMessage(replies.joinToString("\n"))
     }
 }

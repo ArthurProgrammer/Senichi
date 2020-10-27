@@ -7,11 +7,11 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import java.awt.Color
 
 class AvatarCommand: CommandBuilder("avatar", arrayOf("userpfp"),"discord") {
-    override fun onCommand(event: GuildMessageReceivedEvent, context: CommandContext) {
+    override fun onCommand(context: CommandContext) {
 
-        val user = context.message.mentionedUsers.firstOrNull { it.asMention == context.rawArgs.getOrNull(0)?.replace("!", "") } ?: context.args.getOrNull(0)?.toLong()?.let {
-            event.jda.getUserById(it)
-        } ?: event.author
+        val user = context.message.mentionedUsers.firstOrNull { it.asMention == context.rawArgs.getOrNull(0)?.replace("!", "") } ?: context.rawArgs.getOrNull(0)?.toLong()?.let {
+            context.jda.getUserById(it)
+        } ?: context.author
 
         val avatarUrl = user.effectiveAvatarUrl + "?size=4096"
 
@@ -25,9 +25,9 @@ class AvatarCommand: CommandBuilder("avatar", arrayOf("userpfp"),"discord") {
             .setTitle("$userName avatar")
             .setImage(avatarUrl)
             .setColor(Color(17, 238, 176))
-            .setFooter("Command executed by ${event.author.asTag}", event.author.effectiveAvatarUrl)
+            .setFooter("Command executed by ${context.author.asTag}", context.author.effectiveAvatarUrl)
             .build()
-        context.sendMessage(embed)
+        context.textChannel.sendMessage(embed)
 
     }
 }

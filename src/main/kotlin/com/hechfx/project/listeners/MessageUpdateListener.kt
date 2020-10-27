@@ -1,16 +1,17 @@
 package com.hechfx.project.listeners
 
-import com.hechfx.project.api.Reply
 import com.hechfx.project.commands.CommandContext
 import com.hechfx.project.commands.`fun`.ChatbotCommand
 import com.hechfx.project.commands.discord.AvatarCommand
-import com.hechfx.project.commands.misc.*
+import com.hechfx.project.commands.misc.BotinfoCommand
+import com.hechfx.project.commands.misc.InviteCommand
+import com.hechfx.project.commands.misc.PingCommand
 import com.hechfx.project.config.Configuration
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
+import net.dv8tion.jda.api.events.message.guild.GuildMessageUpdateEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 
-class MessageListener : ListenerAdapter() {
-    override fun onGuildMessageReceived(event: GuildMessageReceivedEvent) {
+class MessageUpdateListener : ListenerAdapter() {
+    override fun onGuildMessageUpdate(event: GuildMessageUpdateEvent) {
         if (event.author.isBot) return
         if (!event.message.channelType.isGuild) return
 

@@ -1,18 +1,14 @@
 package com.hechfx.project.commands
 
-import net.dv8tion.jda.api.entities.Message
-import net.dv8tion.jda.api.entities.MessageEmbed
-import net.dv8tion.jda.api.entities.User
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
+import net.dv8tion.jda.api.JDA
+import net.dv8tion.jda.api.entities.*
 
-class CommandContext(var event: GuildMessageReceivedEvent, var args: List<String>, var rawArgs: List<String>, var strippedArgs: List<String>) {
-    val message: Message = event.message
-    val author: User = event.author
-
-    fun sendMessage(message: String) {
-        return event.message.channel.sendMessage(message).queue()
-    }
-    fun sendMessage(embed: MessageEmbed) {
-        return event.message.channel.sendMessage(embed).queue()
-    }
-}
+class CommandContext(
+    var rawArgs: List<String>,
+    var guild: Guild,
+    var textChannel: TextChannel,
+    var voiceChannel: VoiceChannel,
+    var message: Message,
+    var jda: JDA,
+    var author: User
+)

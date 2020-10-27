@@ -8,7 +8,7 @@ import java.lang.management.ManagementFactory
 import java.lang.management.RuntimeMXBean
 
 class BotinfoCommand: CommandBuilder("botinfo", arrayOf("infobot"),"misc") {
-    override fun onCommand(event: GuildMessageReceivedEvent, context: CommandContext) {
+    override fun onCommand(context: CommandContext) {
         val runtimeMXBean: RuntimeMXBean = ManagementFactory.getRuntimeMXBean()
         val uptime = runtimeMXBean.uptime
 
@@ -19,18 +19,18 @@ class BotinfoCommand: CommandBuilder("botinfo", arrayOf("infobot"),"misc") {
 
         val replies = listOf(
             Reply(
-                "Shard: `${event.jda.shardInfo.shardId} (Guild)/${event.jda.shardManager?.shardsTotal} (Total)`"
+                "Shard: `${context.jda.shardInfo.shardId} (Guild)/${context.jda.shardManager?.shardsTotal} (Total)`"
             ).build(context),
             Reply(
-                "RestPing: `${event.jda.restPing.complete()}ms`"
+                "RestPing: `${context.jda.restPing.complete()}ms`"
             ).build(context),
             Reply(
-                "GatewayPing: `${event.jda.gatewayPing}ms`"
+                "GatewayPing: `${context.jda.gatewayPing}ms`"
             ).build(context),
             Reply(
                 "Uptime: `$hours h, $minutes m, $seconds s`"
             ).build(context)
         )
-        context.sendMessage(replies.joinToString("\n"))
+        context.textChannel.sendMessage(replies.joinToString("\n")).queue()
     }
 }

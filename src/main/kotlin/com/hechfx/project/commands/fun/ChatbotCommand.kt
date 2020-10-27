@@ -8,11 +8,11 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import okhttp3.Request
 
 class ChatbotCommand : CommandBuilder("chatbot", arrayOf("chatwbot"),"fun") {
-    override fun onCommand(event: GuildMessageReceivedEvent, context: CommandContext) {
+    override fun onCommand(context: CommandContext) {
         val question: String
 
         if (context.rawArgs.isEmpty()) {
-            return event.channel.sendMessage(
+            return context.textChannel.sendMessage(
                 Reply(
                     "You need to insert your question!",
                 ).build(context)
@@ -21,7 +21,7 @@ class ChatbotCommand : CommandBuilder("chatbot", arrayOf("chatwbot"),"fun") {
             question = context.rawArgs.joinToString(" ")
         }
 
-        val client = event.jda.httpClient
+        val client = context.jda.httpClient
 
         val request = Request.Builder()
             .url("https://some-random-api.ml/chatbot?message=${question.replace(" ", "+")}")
@@ -37,7 +37,7 @@ class ChatbotCommand : CommandBuilder("chatbot", arrayOf("chatwbot"),"fun") {
         val answer = objData["response"].asText()
 
         if (res.code() == 200) {
-            context.sendMessage(
+            context.textChannel.sendMessage(
                 Reply(
                     answer,
                 ).build(context)
