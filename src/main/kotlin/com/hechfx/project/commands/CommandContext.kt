@@ -7,7 +7,6 @@ class CommandContext(
     var rawArgs: List<String>,
     var guild: Guild,
     var textChannel: TextChannel,
-    var voiceChannel: VoiceChannel,
     var message: Message,
     var jda: JDA,
     var author: User

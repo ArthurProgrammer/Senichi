@@ -44,7 +44,6 @@ class MessageListener : ListenerAdapter() {
                         rawArgs,
                         event.guild,
                         event.channel,
-                        event.member?.voiceState?.channel!!,
                         event.message,
                         event.jda,
                         event.author
@@ -58,7 +57,6 @@ class MessageListener : ListenerAdapter() {
                             rawArgs,
                             event.guild,
                             event.channel,
-                            event.member?.voiceState?.channel!!,
                             event.message,
                             event.jda,
                             event.author
