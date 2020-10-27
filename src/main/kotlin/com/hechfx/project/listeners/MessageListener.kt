@@ -18,7 +18,6 @@ class MessageListener : ListenerAdapter() {
             event.message.channel.sendMessage(
                 "Hi, i'm Senichi. My prefix is `!`"
             )
-            return
         }
 
         if (!event.message.contentRaw.contains(Configuration.PREFIX)) return
@@ -51,7 +50,7 @@ class MessageListener : ListenerAdapter() {
                 )
             }
             for (alias in command.aliases) {
-                if (Configuration.PREFIX + alias == Configuration.PREFIX + commandArg) {
+                if ((Configuration.PREFIX + alias) == (Configuration.PREFIX + commandArg)) {
                     command.onCommand(
                         CommandContext(
                             rawArgs,
