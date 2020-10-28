@@ -3,6 +3,7 @@ package com.hechfx.project.commands.discord
 import com.hechfx.project.commands.CommandContext
 import com.hechfx.project.commands.CommandBuilder
 import com.hechfx.project.config.Configuration
+import com.hechfx.project.config.Configuration.DISCORD_BLURPLE
 import net.dv8tion.jda.api.EmbedBuilder
 import java.awt.Color
 
@@ -26,10 +27,17 @@ class AvatarCommand: CommandBuilder(
         val embed = EmbedBuilder()
             .setTitle("\uD83D\uDDBC $userName avatar")
             .setImage(avatarUrl)
-            .setColor(Color(17, 238, 176))
-            .setFooter("Command executed by ${context.author.asTag}", context.author.effectiveAvatarUrl)
-            .setDescription("**Click [here]($avatarUrl) to download the avatar!**")
-        if (user.idLong == Configuration.CLIENT_ID) embed.appendDescription("*Yes! My avatar is so cute like me.*")
-        context.sendMessage(embed.build())
+            if (!context.guild.isMember(user)) {
+                embed.setColor(DISCORD_BLURPLE)
+            } else {
+                val member = context.guild.getMember(user)
+                embed.setColor(member?.color ?: DISCORD_BLURPLE)
+            }
+            embed.setFooter("Command executed by ${context.author.asTag}", context.author.effectiveAvatarUrl)
+            embed.setDescription("**Click [here]($avatarUrl) to download the avatar!**")
+        if (user.idLong == Configuration.CLIENT_ID) {
+            embed.appendDescription("*Yes! My avatar is so cute like me.*")
+        }
+        context.sendMessage(embed = embed.build())
     }
 }
