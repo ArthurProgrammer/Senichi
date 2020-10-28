@@ -13,7 +13,10 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter
 class MessageUpdateListener : ListenerAdapter() {
     val commands = listOf(
             // ======/ ADMIN \======
+            BanCommand(),
+            BanInfoCommand(),
             ClearCommand(),
+            KickCommand(),
             // ======/ DISCORD \======
             AvatarCommand(),
             UserinfoCommand(),
