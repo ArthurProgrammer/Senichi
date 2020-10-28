@@ -24,12 +24,13 @@ class AvatarCommand: CommandBuilder(
         }
 
         val embed = EmbedBuilder()
-            .setTitle("$userName avatar")
+            .setTitle("\uD83D\uDDBC $userName avatar")
             .setImage(avatarUrl)
             .setColor(Color(17, 238, 176))
             .setFooter("Command executed by ${context.author.asTag}", context.author.effectiveAvatarUrl)
-            .build()
-        context.sendMessage(embed)
+            .setDescription("**Click [here]($avatarUrl) to download the avatar!**")
+        if (user.idLong == 758128536908988436L) embed.appendDescription("*Yes! My avatar is so cute like me.*")
+        context.sendMessage(embed.build())
 
     }
 }
