@@ -6,11 +6,14 @@ import com.hechfx.project.config.Configuration.DISCORD_BLURPLE
 import net.dv8tion.jda.api.EmbedBuilder
 import java.awt.Color
 
-class UserinfoCommand: CommandBuilder("userinfo", arrayOf("infouser", "memberinfo"), "discord") {
+class UserinfoCommand: CommandBuilder(
+    "userinfo",
+    arrayOf("infouser", "memberinfo"),
+    "discord",
+    "Shows user info!"
+) {
     override fun onCommand(context: CommandContext) {
-        val user = context.message.mentionedUsers.firstOrNull { it.asMention == context.rawArgs.getOrNull(0)?.replace("!", "") } ?: context.rawArgs.getOrNull(0)?.toLong()?.let {
-            context.jda.getUserById(it)
-        } ?: context.author
+        val user = context.user(0) ?: context.author
 
         val userAvatarUrl = user.effectiveAvatarUrl + "?size=4096"
 
@@ -29,6 +32,6 @@ class UserinfoCommand: CommandBuilder("userinfo", arrayOf("infouser", "memberinf
                 embed.setColor(DISCORD_BLURPLE)
             }
 
-        context.textChannel.sendMessage(embed.build()).queue()
+        context.sendMessage(embed.build())
     }
 }

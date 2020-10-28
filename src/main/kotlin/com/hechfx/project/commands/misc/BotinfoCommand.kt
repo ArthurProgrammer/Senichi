@@ -7,7 +7,11 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import java.lang.management.ManagementFactory
 import java.lang.management.RuntimeMXBean
 
-class BotinfoCommand: CommandBuilder("botinfo", arrayOf("infobot"),"misc") {
+class BotinfoCommand: CommandBuilder(
+    "botinfo",
+    arrayOf("infobot"),
+    "misc",
+    "Shows my informations!") {
     override fun onCommand(context: CommandContext) {
         val runtimeMXBean: RuntimeMXBean = ManagementFactory.getRuntimeMXBean()
         val uptime = runtimeMXBean.uptime
@@ -38,6 +42,6 @@ class BotinfoCommand: CommandBuilder("botinfo", arrayOf("infobot"),"misc") {
                 "Guilds: `${context.jda.guilds.size}`"
             ).build(context)
         )
-        context.textChannel.sendMessage(replies.joinToString("\n")).queue()
+        context.sendMessage(replies.joinToString("\n"))
     }
 }

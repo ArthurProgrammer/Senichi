@@ -5,7 +5,12 @@ import com.hechfx.project.api.Reply
 import com.hechfx.project.commands.CommandBuilder
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 
-class PingCommand : CommandBuilder("ping", arrayOf("latency"),"misc") {
+class PingCommand : CommandBuilder(
+    "ping",
+    arrayOf("latency"),
+    "misc",
+    "Shows my ping!"
+) {
     override fun onCommand(context: CommandContext) {
         val replies = listOf(
             Reply(
@@ -17,6 +22,6 @@ class PingCommand : CommandBuilder("ping", arrayOf("latency"),"misc") {
             ).build(context)
         )
 
-        context.textChannel.sendMessage(replies.joinToString("\n")).queue()
+        context.sendMessage(replies.joinToString("\n"))
     }
 }

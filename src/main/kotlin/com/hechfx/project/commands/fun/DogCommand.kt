@@ -8,7 +8,12 @@ import net.dv8tion.jda.api.EmbedBuilder
 import okhttp3.Request
 import java.net.URL
 
-class DogCommand: CommandBuilder("dog", arrayOf("doggo", "cachorro"), "fun") {
+class DogCommand: CommandBuilder(
+    "dog",
+    arrayOf("doggo", "cachorro"),
+    "fun",
+    "Shows cute dogs!"
+) {
     override fun onCommand(context: CommandContext) {
         val url = URL("https://some-random-api.ml/img/dog")
 
@@ -31,6 +36,6 @@ class DogCommand: CommandBuilder("dog", arrayOf("doggo", "cachorro"), "fun") {
             .setImage(dogLink)
             .setColor(Configuration.DISCORD_BLURPLE)
             .setFooter("Command executed by ${context.author.asTag}", context.author.effectiveAvatarUrl)
-        context.textChannel.sendMessage(embed.build()).queue()
+        context.sendMessage(embed.build())
     }
 }

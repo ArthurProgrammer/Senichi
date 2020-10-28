@@ -5,12 +5,15 @@ import com.hechfx.project.commands.CommandBuilder
 import net.dv8tion.jda.api.EmbedBuilder
 import java.awt.Color
 
-class AvatarCommand: CommandBuilder("avatar", arrayOf("userpfp"),"discord") {
+class AvatarCommand: CommandBuilder(
+    "avatar",
+    arrayOf("userpfp"),
+    "discord",
+    "Shows user's avatar!"
+) {
     override fun onCommand(context: CommandContext) {
 
-        val user = context.message.mentionedUsers.firstOrNull { it.asMention == context.rawArgs.getOrNull(0)?.replace("!", "") } ?: context.rawArgs.getOrNull(0)?.toLong()?.let {
-            context.jda.getUserById(it)
-        } ?: context.author
+        val user = context.user(0) ?: context.author
 
         val avatarUrl = user.effectiveAvatarUrl + "?size=4096"
 
@@ -26,7 +29,7 @@ class AvatarCommand: CommandBuilder("avatar", arrayOf("userpfp"),"discord") {
             .setColor(Color(17, 238, 176))
             .setFooter("Command executed by ${context.author.asTag}", context.author.effectiveAvatarUrl)
             .build()
-        context.textChannel.sendMessage(embed).queue()
+        context.sendMessage(embed)
 
     }
 }

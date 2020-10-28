@@ -11,7 +11,12 @@ import java.lang.IllegalArgumentException
 import java.lang.Integer.parseInt
 import java.lang.NumberFormatException
 
-class ClearCommand: CommandBuilder("clear", arrayOf("clean", "limpar"), "administration") {
+class ClearCommand: CommandBuilder(
+    "clear",
+    arrayOf("clean", "limpar"),
+    "administration",
+    "Bulk delete messages!"
+) {
     override fun onCommand(context: CommandContext) {
         if (context.rawArgs.isEmpty()) {
             context.textChannel.sendMessage(
@@ -48,6 +53,8 @@ class ClearCommand: CommandBuilder("clear", arrayOf("clean", "limpar"), "adminis
                 ).queue()
                 return
             }
+
+
 
             if (quantity < 2 || quantity > 100) {
                 context.textChannel.sendMessage(

@@ -11,10 +11,21 @@ repositories {
     jcenter()
 }
 
+buildscript {
+    repositories { jcenter() }
+
+    dependencies {
+        val kotlinVersion = "1.4.10"
+        classpath(kotlin("gradle-plugin", version = kotlinVersion))
+        classpath(kotlin("serialization", version = kotlinVersion))
+    }
+}
+
 dependencies {
     implementation(kotlin("stdlib"))
     implementation("net.dv8tion:JDA:4.2.0_211")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.9.9")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.0")
 }
 
 tasks {

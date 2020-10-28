@@ -5,11 +5,29 @@ import com.hechfx.project.commands.`fun`.*
 import com.hechfx.project.commands.administration.ClearCommand
 import com.hechfx.project.commands.discord.*
 import com.hechfx.project.commands.misc.*
+import com.hechfx.project.commands.util.HelpCommand
 import com.hechfx.project.config.Configuration
 import net.dv8tion.jda.api.events.message.guild.GuildMessageUpdateEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 
 class MessageUpdateListener : ListenerAdapter() {
+    val commands = listOf(
+            // ======/ ADMIN \======
+            ClearCommand(),
+            // ======/ DISCORD \======
+            AvatarCommand(),
+            UserinfoCommand(),
+            // ======/ FUN \======
+            ChatbotCommand(),
+            CatCommand(),
+            DogCommand(),
+            // ======/ MISC \======
+            BotinfoCommand(),
+            PingCommand(),
+            InviteCommand(),
+            // ======/ UTIL \======
+            HelpCommand()
+    )
     override fun onGuildMessageUpdate(event: GuildMessageUpdateEvent) {
         if (event.author.isBot) return
         if (!event.message.channelType.isGuild) return
@@ -22,24 +40,9 @@ class MessageUpdateListener : ListenerAdapter() {
 
         if (!event.message.contentRaw.contains(Configuration.PREFIX)) return
 
-        val argsl = event.message.contentRaw.substring(Configuration.PREFIX.length).trim().split(" ").drop(0)
+        val args = event.message.contentRaw.substring(Configuration.PREFIX.length).trim().split(" ").drop(0)
         val rawArgs = event.message.contentRaw.substring(Configuration.PREFIX.length).trim().split(" ").drop(1)
-        val commandArg = argsl.first()
-        val commands = listOf(
-                // ======/ ADMIN \======
-                ClearCommand(),
-                // ======/ DISCORD \======
-                AvatarCommand(),
-                UserinfoCommand(),
-                // ======/ FUN \======
-                ChatbotCommand(),
-                CatCommand(),
-                DogCommand(),
-                // ======/ MISC \======
-                BotinfoCommand(),
-                PingCommand(),
-                InviteCommand()
-        )
+        val commandArg = args.first()
 
         for (command in commands) {
             if ((Configuration.PREFIX + command.name) == (Configuration.PREFIX + commandArg)) {
