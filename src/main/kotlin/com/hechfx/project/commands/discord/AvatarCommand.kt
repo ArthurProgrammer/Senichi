@@ -38,6 +38,6 @@ class AvatarCommand: CommandBuilder(
         if (user.idLong == Configuration.CLIENT_ID) {
             embed.appendDescription("*Yes! My avatar is so cute like me.*")
         }
-        context.sendMessage(embed = embed.build())
+        context.sendMessage(embed.build())
     }
 }

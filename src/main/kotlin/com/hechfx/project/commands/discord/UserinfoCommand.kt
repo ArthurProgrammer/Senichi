@@ -31,6 +31,6 @@ class UserinfoCommand: CommandBuilder(
                 embed.setColor(DISCORD_BLURPLE)
             }
 
-        context.reply(embed = embed.build())
+        context.sendMessage(embed.build())
     }
 }

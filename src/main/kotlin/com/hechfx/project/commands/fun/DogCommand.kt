@@ -35,6 +35,6 @@ class DogCommand: CommandBuilder(
             .setImage(dogLink)
             .setColor(Configuration.DISCORD_BLURPLE)
             .setFooter("Command executed by ${context.author.asTag}", context.author.effectiveAvatarUrl)
-        context.reply(embed = embed.build())
+        context.sendMessage(embed.build())
     }
 }
