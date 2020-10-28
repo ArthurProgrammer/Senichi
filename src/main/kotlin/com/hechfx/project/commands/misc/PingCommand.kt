@@ -16,6 +16,6 @@ class PingCommand : CommandBuilder(
                 "API: `${context.jda.restPing.complete()}`"
         )
 
-        context.sendMessage(replies.joinToString("\n"))
+        context.reply(replies.joinToString("\n"))
     }
 }

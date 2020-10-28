@@ -14,11 +14,11 @@ class NotifyCommand: CommandBuilder(
         val notifyRole = context.guild.getRoleById(771108676475551766L)!!
 
         if (member.roles.contains(notifyRole)) {
-            context.reply("Now, you'll not receive my notifications updates!")
+            context.reply("now, you'll not receive my notifications updates!")
             context.guild.removeRoleFromMember(member, notifyRole).queue()
             return
         } else {
-            context.reply("Now, you'll receive my notifications updates!")
+            context.reply("now, you'll receive my notifications updates!")
             context.guild.addRoleToMember(member, notifyRole).queue()
             return
         }

@@ -18,7 +18,7 @@ class ClearCommand: CommandBuilder(
 ) {
     override fun onCommand(context: CommandContext) {
         if (context.rawArgs.isEmpty()) {
-            context.reply("You didn't provide any arguments!")
+            context.reply("you didn't provide any arguments!")
             return
         }
 
@@ -26,19 +26,19 @@ class ClearCommand: CommandBuilder(
             val quantity = parseInt(context.rawArgs[0])
 
             if (!context.member.hasPermission(Permission.MESSAGE_MANAGE)) {
-                context.reply("You don't have permission to use this command!")
+                context.reply("you don't have permission to use this command!")
                 return
             }
 
             val clientAsMember = context.guild.getMemberById(CLIENT_ID)!!
 
             if (!clientAsMember.hasPermission(Permission.MESSAGE_MANAGE)) {
-                context.reply("I don't have permission to execute this command!")
+                context.reply("i don't have permission to execute this command!")
                 return
             }
 
             if (quantity < 2 || quantity > 100) {
-                context.reply("You need to put a number between 2 and 100!")
+                context.reply("you need to put a number between 2 and 100!")
                 return
             }
 
@@ -49,10 +49,10 @@ class ClearCommand: CommandBuilder(
                 context.textChannel.deleteMessages(messages).queue()
                 context.reply("$quantity messages have been deleted!")
             } catch (e: IllegalArgumentException) {
-                context.reply("Something has gone wrong... `$e`")
+                context.reply("something has gone wrong... `$e`")
             }
         } catch (e: NumberFormatException) {
-            context.reply("You don't have provided a number!")
+            context.reply("you don't have provided a number!")
         }
     }
 }

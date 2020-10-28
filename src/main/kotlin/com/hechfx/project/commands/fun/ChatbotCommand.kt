@@ -14,7 +14,7 @@ class ChatbotCommand : CommandBuilder(
 ) {
     override fun onCommand(context: CommandContext) {
         if (context.rawArgs.isEmpty()) {
-            context.reply("How do you'll start a conversation without any word?")
+            context.reply("how do you'll start a conversation without any word?")
             return
         }
 
@@ -38,11 +38,11 @@ class ChatbotCommand : CommandBuilder(
 
         try {
             if (res.code() == 200) {
-                context.reply(answer)
+                context.reply(answer.toLowerCase())
                 return
             }
         } catch (e: SocketTimeoutException) {
-            context.reply("Something has gone wrong... `${e.message}`")
+            context.reply("something has gone wrong... `${e.message}`")
         }
     }
 }
