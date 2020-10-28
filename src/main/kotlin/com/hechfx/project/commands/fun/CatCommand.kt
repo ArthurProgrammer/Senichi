@@ -11,7 +11,6 @@ import java.net.URL
 class CatCommand: CommandBuilder(
     "cat",
     arrayOf("randomcat", "gato"),
-    "fun",
     "Shows cute cats!"
 ) {
     override fun onCommand(context: CommandContext) {
@@ -36,6 +35,6 @@ class CatCommand: CommandBuilder(
             .setImage(catLink)
             .setColor(DISCORD_BLURPLE)
             .setFooter("Command executed by ${context.author.asTag}", context.author.effectiveAvatarUrl)
-        context.sendMessage(embed.build())
+        context.reply(embed.build())
     }
 }

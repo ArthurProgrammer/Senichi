@@ -27,17 +27,12 @@ class MessageListener : ListenerAdapter() {
             PingCommand(),
             InviteCommand(),
             // ======/ UTIL \======
+            NotifyCommand(),
             HelpCommand()
     )
     override fun onGuildMessageReceived(event: GuildMessageReceivedEvent) {
         if (event.author.isBot) return
         if (!event.message.channelType.isGuild) return
-
-        if (event.message.contentRaw.contains(event.jda.selfUser.asMention)) {
-            event.message.channel.sendMessage(
-                "Hi, i'm Senichi. My prefix is `!`"
-            ).queue()
-        }
 
         if (!event.message.contentRaw.contains(Configuration.PREFIX)) return
 
@@ -52,6 +47,9 @@ class MessageListener : ListenerAdapter() {
                         event.channel.sendMessage("You can't use this command!").queue()
                         return
                     }
+                }
+                if (command.onlyOnMainGuild == true) {
+                    if (event.guild.idLong != Configuration.MAIN_GUILD_ID) return
                 }
                 command.onCommand(
                     CommandContext(

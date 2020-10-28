@@ -2,13 +2,13 @@ package com.hechfx.project.commands.discord
 
 import com.hechfx.project.commands.CommandContext
 import com.hechfx.project.commands.CommandBuilder
+import com.hechfx.project.config.Configuration
 import net.dv8tion.jda.api.EmbedBuilder
 import java.awt.Color
 
 class AvatarCommand: CommandBuilder(
     "avatar",
     arrayOf("userpfp"),
-    "discord",
     "Shows user's avatar!"
 ) {
     override fun onCommand(context: CommandContext) {
@@ -29,8 +29,7 @@ class AvatarCommand: CommandBuilder(
             .setColor(Color(17, 238, 176))
             .setFooter("Command executed by ${context.author.asTag}", context.author.effectiveAvatarUrl)
             .setDescription("**Click [here]($avatarUrl) to download the avatar!**")
-        if (user.idLong == 758128536908988436L) embed.appendDescription("*Yes! My avatar is so cute like me.*")
+        if (user.idLong == Configuration.CLIENT_ID) embed.appendDescription("*Yes! My avatar is so cute like me.*")
         context.sendMessage(embed.build())
-
     }
 }

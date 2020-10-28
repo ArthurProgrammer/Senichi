@@ -8,20 +8,14 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 class PingCommand : CommandBuilder(
     "ping",
     arrayOf("latency"),
-    "misc",
     "Shows my ping!"
 ) {
     override fun onCommand(context: CommandContext) {
         val replies = listOf(
-            Reply(
-                "API: `${context.jda.gatewayPing}ms`",
-                    mention = true
-            ).build(context),
-            Reply(
-                "BOT: `${context.jda.restPing.complete()}ms`"
-            ).build(context)
+                "BOT: `${context.jda.gatewayPing}ms`",
+                "API: `${context.jda.restPing.complete()}`"
         )
 
-        context.sendMessage(replies.joinToString("\n"))
+        context.reply(replies.joinToString("\n"))
     }
 }

@@ -2,10 +2,10 @@ package com.hechfx.project.listeners
 
 import com.hechfx.project.commands.CommandContext
 import com.hechfx.project.commands.`fun`.*
-import com.hechfx.project.commands.administration.ClearCommand
+import com.hechfx.project.commands.administration.*
 import com.hechfx.project.commands.discord.*
 import com.hechfx.project.commands.misc.*
-import com.hechfx.project.commands.util.HelpCommand
+import com.hechfx.project.commands.util.*
 import com.hechfx.project.config.Configuration
 import net.dv8tion.jda.api.events.message.guild.GuildMessageUpdateEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
@@ -17,6 +17,7 @@ class MessageUpdateListener : ListenerAdapter() {
             // ======/ DISCORD \======
             AvatarCommand(),
             UserinfoCommand(),
+            // ======/ MINECRAFT \======
             // ======/ FUN \======
             ChatbotCommand(),
             CatCommand(),
@@ -26,17 +27,12 @@ class MessageUpdateListener : ListenerAdapter() {
             PingCommand(),
             InviteCommand(),
             // ======/ UTIL \======
+            NotifyCommand(),
             HelpCommand()
     )
     override fun onGuildMessageUpdate(event: GuildMessageUpdateEvent) {
         if (event.author.isBot) return
         if (!event.message.channelType.isGuild) return
-
-        if (event.message.contentRaw.contains(event.jda.selfUser.asMention)) {
-            event.message.channel.sendMessage(
-                "Hi, i'm Senichi. My prefix is `!`"
-            ).queue()
-        }
 
         if (!event.message.contentRaw.contains(Configuration.PREFIX)) return
 
@@ -51,6 +47,9 @@ class MessageUpdateListener : ListenerAdapter() {
                         event.channel.sendMessage("You can't use this command!").queue()
                         return
                     }
+                }
+                if (command.onlyOnMainGuild == true) {
+                    if (event.guild.idLong != Configuration.MAIN_GUILD_ID) return
                 }
                 command.onCommand(
                     CommandContext(
