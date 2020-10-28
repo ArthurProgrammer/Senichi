@@ -2,6 +2,7 @@ package com.hechfx.project.commands.discord
 
 import com.hechfx.project.commands.CommandContext
 import com.hechfx.project.commands.CommandBuilder
+import com.hechfx.project.config.Configuration
 import net.dv8tion.jda.api.EmbedBuilder
 import java.awt.Color
 
@@ -23,12 +24,12 @@ class AvatarCommand: CommandBuilder(
         }
 
         val embed = EmbedBuilder()
-            .setTitle("$userName avatar")
+            .setTitle("\uD83D\uDDBC $userName avatar")
             .setImage(avatarUrl)
             .setColor(Color(17, 238, 176))
             .setFooter("Command executed by ${context.author.asTag}", context.author.effectiveAvatarUrl)
-            .build()
-        context.reply(embed)
-
+            .setDescription("**Click [here]($avatarUrl) to download the avatar!**")
+        if (user.idLong == Configuration.CLIENT_ID) embed.appendDescription("*Yes! My avatar is so cute like me.*")
+        context.sendMessage(embed.build())
     }
 }
