@@ -10,7 +10,6 @@ import java.lang.management.RuntimeMXBean
 class BotinfoCommand: CommandBuilder(
     "botinfo",
     arrayOf("infobot"),
-    "misc",
     "Shows my informations!") {
     override fun onCommand(context: CommandContext) {
         val runtimeMXBean: RuntimeMXBean = ManagementFactory.getRuntimeMXBean()
@@ -22,26 +21,13 @@ class BotinfoCommand: CommandBuilder(
         val seconds = uptimeInSeconds % 60
 
         val replies = listOf(
-            Reply(
                 "Shard: `${context.jda.shardInfo.shardId} (Guild)/${context.jda.shardManager?.shardsTotal} (Total)`",
-                    mention = true
-            ).build(context),
-            Reply(
-                "RestPing: `${context.jda.restPing.complete()}ms`"
-            ).build(context),
-            Reply(
-                "GatewayPing: `${context.jda.gatewayPing}ms`"
-            ).build(context),
-            Reply(
-                "Uptime: `$hours h, $minutes m, $seconds s`"
-            ).build(context),
-            Reply(
-                "Users: `${context.jda.users.size}`"
-            ).build(context),
-            Reply(
+                "RestPing: `${context.jda.restPing.complete()}ms`",
+                "GatewayPing: `${context.jda.gatewayPing}ms`",
+                "Uptime: `$hours h, $minutes m, $seconds s`",
+                "Users: `${context.jda.users.size}`",
                 "Guilds: `${context.jda.guilds.size}`"
-            ).build(context)
         )
-        context.sendMessage(replies.joinToString("\n"))
+        context.reply(replies.joinToString("\n"))
     }
 }

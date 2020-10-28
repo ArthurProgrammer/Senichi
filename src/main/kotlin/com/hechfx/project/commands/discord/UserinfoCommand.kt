@@ -9,7 +9,6 @@ import java.awt.Color
 class UserinfoCommand: CommandBuilder(
     "userinfo",
     arrayOf("infouser", "memberinfo"),
-    "discord",
     "Shows user info!"
 ) {
     override fun onCommand(context: CommandContext) {
@@ -32,6 +31,6 @@ class UserinfoCommand: CommandBuilder(
                 embed.setColor(DISCORD_BLURPLE)
             }
 
-        context.sendMessage(embed.build())
+        context.reply(embed.build())
     }
 }

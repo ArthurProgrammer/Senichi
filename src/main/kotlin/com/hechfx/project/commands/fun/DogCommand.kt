@@ -11,7 +11,6 @@ import java.net.URL
 class DogCommand: CommandBuilder(
     "dog",
     arrayOf("doggo", "cachorro"),
-    "fun",
     "Shows cute dogs!"
 ) {
     override fun onCommand(context: CommandContext) {
@@ -36,6 +35,6 @@ class DogCommand: CommandBuilder(
             .setImage(dogLink)
             .setColor(Configuration.DISCORD_BLURPLE)
             .setFooter("Command executed by ${context.author.asTag}", context.author.effectiveAvatarUrl)
-        context.sendMessage(embed.build())
+        context.reply(embed.build())
     }
 }

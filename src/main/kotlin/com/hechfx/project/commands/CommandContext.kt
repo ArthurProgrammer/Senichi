@@ -15,6 +15,15 @@ class CommandContext(
     var member: Member,
     var httpClient: OkHttpClient,
 ) {
+    fun reply(message: Message) {
+        return sendMessage("${author.asMention}, $message")
+    }
+    fun reply(text: CharSequence) {
+        return sendMessage("${author.asMention}, $text")
+    }
+    fun reply(embed: MessageEmbed) {
+        return sendMessage("${author.asMention}, $embed")
+    }
     fun sendMessage(message: Message) {
         return textChannel.sendMessage(message).queue()
     }

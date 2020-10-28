@@ -10,7 +10,6 @@ import com.hechfx.project.listeners.MessageListener
 class HelpCommand: CommandBuilder(
     "help",
     arrayOf("ajuda", "comandos"),
-    "util",
     "Show the help embed"
 ) {
     override fun onCommand(context: CommandContext) {
@@ -23,6 +22,6 @@ class HelpCommand: CommandBuilder(
             for (command in commands) {
                 embed.addField(Configuration.PREFIX + command.name, command.description, false)
             }
-        context.sendMessage(embed.build())
+        context.reply(embed.build())
     }
 }

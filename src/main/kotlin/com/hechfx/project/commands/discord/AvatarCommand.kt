@@ -8,7 +8,6 @@ import java.awt.Color
 class AvatarCommand: CommandBuilder(
     "avatar",
     arrayOf("userpfp"),
-    "discord",
     "Shows user's avatar!"
 ) {
     override fun onCommand(context: CommandContext) {
@@ -29,7 +28,7 @@ class AvatarCommand: CommandBuilder(
             .setColor(Color(17, 238, 176))
             .setFooter("Command executed by ${context.author.asTag}", context.author.effectiveAvatarUrl)
             .build()
-        context.sendMessage(embed)
+        context.reply(embed)
 
     }
 }
