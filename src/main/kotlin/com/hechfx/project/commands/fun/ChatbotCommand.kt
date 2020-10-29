@@ -43,7 +43,7 @@ class ChatbotCommand : CommandBuilder(
                 return
             }
         } catch (e: SocketTimeoutException) {
-            context.reply("something has gone wrong... `${e.message}`")
+            context.reply("something has gone wrong... `${res.code()} | $e`")
         }
     }
 }
