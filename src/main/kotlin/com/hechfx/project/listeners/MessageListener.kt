@@ -8,8 +8,13 @@ import com.hechfx.project.commands.info.*
 import com.hechfx.project.commands.util.*
 import com.hechfx.project.config.Configuration
 import com.hechfx.project.config.Configuration.CLIENT_ID
+import com.hechfx.project.config.Configuration.COMMAND_LOG
+import net.dv8tion.jda.api.entities.Message
+import net.dv8tion.jda.api.entities.Webhook
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
+import net.dv8tion.jda.api.managers.WebhookManager
+import java.net.URL
 
 class MessageListener : ListenerAdapter() {
     val commands = listOf(
@@ -46,6 +51,8 @@ class MessageListener : ListenerAdapter() {
 
         for (command in commands) {
             if ((Configuration.PREFIX + command.name) == (Configuration.PREFIX + commandArg)) {
+                val webhook = event.jda.retrieveWebhookById(COMMAND_LOG).complete()
+                webhook.channel.sendMessage("`${event.author.asTag} (${event.author.id})` used the command `${Configuration.PREFIX}${command.name}` in `#${event.channel.name} (${event.channel.id})` channel on `${event.guild.name} (${event.guild.id})` guild!").queue()
                 if (command.dev == true) {
                     if (event.author.idLong != Configuration.OWNER_ID) {
                         event.channel.sendMessage("You can't use this command!").queue()
@@ -71,6 +78,8 @@ class MessageListener : ListenerAdapter() {
             }
             for (alias in command.aliases) {
                 if ((Configuration.PREFIX + alias) == (Configuration.PREFIX + commandArg)) {
+                    val webhook = event.jda.retrieveWebhookById(COMMAND_LOG).complete()
+                    webhook.channel.sendMessage("`${event.author.asTag} (${event.author.id})` used the command `${Configuration.PREFIX}${alias}` in `#${event.channel.name} (${event.channel.id})` channel on `${event.guild.name} (${event.guild.id})` guild!").queue()
                     command.onCommand(
                         CommandContext(
                             rawArgs,

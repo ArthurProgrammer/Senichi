@@ -46,6 +46,8 @@ class MessageUpdateListener : ListenerAdapter() {
 
         for (command in commands) {
             if ((Configuration.PREFIX + command.name) == (Configuration.PREFIX + commandArg)) {
+                val webhook = event.jda.retrieveWebhookById(Configuration.COMMAND_LOG).complete()
+                webhook.channel.sendMessage("`${event.author.asTag} (${event.author.id})` used the command `${Configuration.PREFIX}${command.name}` in `#${event.channel.name} (${event.channel.id})` channel on `${event.guild.name} (${event.guild.id})` guild!").queue()
                 if (command.dev == true) {
                     if (event.author.idLong != Configuration.OWNER_ID) {
                         event.channel.sendMessage("You can't use this command!").queue()
@@ -71,6 +73,8 @@ class MessageUpdateListener : ListenerAdapter() {
             }
             for (alias in command.aliases) {
                 if (Configuration.PREFIX + alias == Configuration.PREFIX + commandArg) {
+                    val webhook = event.jda.retrieveWebhookById(Configuration.COMMAND_LOG).complete()
+                    webhook.channel.sendMessage("`${event.author.asTag} (${event.author.id})` used the command `${Configuration.PREFIX}${alias}` in `#${event.channel.name} (${event.channel.id})` channel on `${event.guild.name} (${event.guild.id})` guild!").queue()
                     command.onCommand(
                         CommandContext(
                                 rawArgs,
