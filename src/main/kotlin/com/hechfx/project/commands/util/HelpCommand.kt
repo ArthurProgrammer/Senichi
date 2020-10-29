@@ -22,6 +22,6 @@ class HelpCommand: CommandBuilder(
             for (command in commands) {
                 embed.addField(Configuration.PREFIX + command.name, command.description, false)
             }
-        context.reply(embed = embed.build())
+        context.sendMessage(embed.build())
     }
 }
