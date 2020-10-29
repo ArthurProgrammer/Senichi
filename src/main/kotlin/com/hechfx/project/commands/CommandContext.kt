@@ -45,12 +45,17 @@ class CommandContext(
             jda.getUserById(it)
         }
     }
-    fun emote(argument: Int): Emote? {
-        return message.emotes.firstOrNull { it.asMention == rawArgs.getOrNull(argument) } ?: rawArgs.getOrNull(argument)?.toLong()?.let {
-            jda.getEmoteById(it)
-        }
+    fun guild(argument: Int): Guild? {
+
+        val guildId = validateSnowflake(rawArgs[argument].toLong())
+
+        return guildId?.let { jda.getGuildById(it) }
     }
-    fun attachment(argument: Int): Message.Attachment? {
-        return message.attachments.getOrNull(0)
+
+    fun validateSnowflake(snowflake: Long): Long? {
+
+        if (snowflake.toString().length != 18) throw Exception()
+
+        return snowflake
     }
 }

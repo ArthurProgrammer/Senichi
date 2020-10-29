@@ -26,6 +26,7 @@ class MessageListener : ListenerAdapter() {
             // ======/ DISCORD \======
             AvatarCommand(),
             UserinfoCommand(),
+            ServerInfoCommand(),
             // ======/ MINECRAFT \======
             // ======/ FUN \======
             ChatbotCommand(),
