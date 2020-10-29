@@ -14,6 +14,7 @@ class CommandContext(
     var author: User,
     var member: Member,
     var httpClient: OkHttpClient,
+    var clientUser: User
 ) {
     fun reply(message: Message) {
         return sendMessage("${author.asMention}, $message")

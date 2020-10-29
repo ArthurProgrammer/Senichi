@@ -12,9 +12,10 @@ import java.lang.Integer.parseInt
 import java.lang.NumberFormatException
 
 class ClearCommand: CommandBuilder(
-    "clear",
-    arrayOf("clean", "limpar"),
-    "Bulk delete messages!"
+        "clear",
+        arrayOf("clean", "limpar"),
+        "Bulk delete messages!",
+        "admin"
 ) {
     override fun onCommand(context: CommandContext) {
         if (context.rawArgs.isEmpty()) {

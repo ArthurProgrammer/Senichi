@@ -4,9 +4,10 @@ import com.hechfx.project.commands.CommandContext
 import com.hechfx.project.commands.`fun`.*
 import com.hechfx.project.commands.administration.*
 import com.hechfx.project.commands.discord.*
-import com.hechfx.project.commands.misc.*
+import com.hechfx.project.commands.info.*
 import com.hechfx.project.commands.util.*
 import com.hechfx.project.config.Configuration
+import com.hechfx.project.config.Configuration.CLIENT_ID
 import net.dv8tion.jda.api.events.message.guild.GuildMessageUpdateEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 
@@ -63,7 +64,8 @@ class MessageUpdateListener : ListenerAdapter() {
                             event.jda,
                             event.author,
                             event.member!!,
-                            event.jda.httpClient
+                            event.jda.httpClient,
+                            event.jda.getUserById(CLIENT_ID)!!
                     )
                 )
             }
@@ -78,7 +80,8 @@ class MessageUpdateListener : ListenerAdapter() {
                                 event.jda,
                                 event.author,
                                 event.member!!,
-                                event.jda.httpClient
+                                event.jda.httpClient,
+                                event.jda.getUserById(CLIENT_ID)!!
                         )
                     )
                 }

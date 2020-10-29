@@ -9,7 +9,8 @@ import net.dv8tion.jda.api.exceptions.HierarchyException
 class KickCommand: CommandBuilder(
         "kick",
         arrayOf("expulsar"),
-        "Kicks a member"
+        "Kicks a member",
+        "admin"
 ) {
     override fun onCommand(context: CommandContext) {
         if (context.rawArgs.isEmpty()) return context.reply("you didn't provide any arguments!")

@@ -9,7 +9,8 @@ import net.dv8tion.jda.api.exceptions.ErrorResponseException
 class BanInfoCommand: CommandBuilder(
         "baninfo",
         arrayOf("infoban", "checkban"),
-        "Shows the ban reason of the member!"
+        "Shows the ban reason of the member!",
+        "admin"
 ) {
     override fun onCommand(context: CommandContext) {
         if (context.rawArgs.isEmpty()) return context.reply("you didn't provide any arguments!")

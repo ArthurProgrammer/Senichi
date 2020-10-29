@@ -1,16 +1,16 @@
-package com.hechfx.project.commands.misc
+package com.hechfx.project.commands.info
 
 import com.hechfx.project.commands.CommandContext
-import com.hechfx.project.api.Reply
 import com.hechfx.project.commands.CommandBuilder
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import java.lang.management.ManagementFactory
 import java.lang.management.RuntimeMXBean
 
 class BotinfoCommand: CommandBuilder(
-    "botinfo",
-    arrayOf("infobot"),
-    "Shows my informations!") {
+        "botinfo",
+        arrayOf("infobot"),
+        "Shows my informations!",
+        "info"
+) {
     override fun onCommand(context: CommandContext) {
         val runtimeMXBean: RuntimeMXBean = ManagementFactory.getRuntimeMXBean()
         val uptime = runtimeMXBean.uptime

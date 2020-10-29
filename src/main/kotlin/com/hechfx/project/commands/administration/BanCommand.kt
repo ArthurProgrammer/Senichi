@@ -10,6 +10,7 @@ class BanCommand: CommandBuilder(
         "ban",
         arrayOf("banir"),
         "Bans users!",
+        "admin"
 ) {
     override fun onCommand(context: CommandContext) {
         if (context.rawArgs.isEmpty()) return context.reply("you didn't provide any arguments!")

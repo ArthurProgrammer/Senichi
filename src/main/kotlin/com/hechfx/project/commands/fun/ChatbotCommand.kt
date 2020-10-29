@@ -8,9 +8,10 @@ import java.net.SocketTimeoutException
 import java.net.URL
 
 class ChatbotCommand : CommandBuilder(
-    "chatbot",
-    arrayOf("chatwbot"),
-    "Chat with chatbot api!"
+        "chatbot",
+        arrayOf("chatwbot"),
+        "Chat with chatbot api!",
+        "fun"
 ) {
     override fun onCommand(context: CommandContext) {
         if (context.rawArgs.isEmpty()) {

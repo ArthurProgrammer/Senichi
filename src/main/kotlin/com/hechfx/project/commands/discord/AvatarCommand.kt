@@ -8,9 +8,10 @@ import net.dv8tion.jda.api.EmbedBuilder
 import java.awt.Color
 
 class AvatarCommand: CommandBuilder(
-    "avatar",
-    arrayOf("userpfp"),
-    "Shows user's avatar!"
+        "avatar",
+        arrayOf("userpfp"),
+        "Shows user's avatar!",
+        "discord"
 ) {
     override fun onCommand(context: CommandContext) {
 

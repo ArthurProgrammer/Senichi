@@ -7,6 +7,7 @@ class NotifyCommand: CommandBuilder(
         "notify",
         arrayOf("notificar"),
         "???",
+        "util",
         onlyOnMainGuild = true
 ) {
     override fun onCommand(context: CommandContext) {

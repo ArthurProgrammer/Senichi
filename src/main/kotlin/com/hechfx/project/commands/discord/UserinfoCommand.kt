@@ -7,9 +7,10 @@ import net.dv8tion.jda.api.EmbedBuilder
 import java.awt.Color
 
 class UserinfoCommand: CommandBuilder(
-    "userinfo",
-    arrayOf("infouser", "memberinfo"),
-    "Shows user info!"
+        "userinfo",
+    arrayOf(    "infouser", "memberinfo"),
+        "Shows user info!",
+        "discord"
 ) {
     override fun onCommand(context: CommandContext) {
         val user = context.user(0) ?: context.author

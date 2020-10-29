@@ -9,9 +9,10 @@ import okhttp3.Request
 import java.net.URL
 
 class DogCommand: CommandBuilder(
-    "dog",
-    arrayOf("doggo", "cachorro"),
-    "Shows cute dogs!"
+        "dog",
+        arrayOf("doggo", "cachorro"),
+        "Shows cute dogs!",
+        "fun"
 ) {
     override fun onCommand(context: CommandContext) {
         val url = URL("https://some-random-api.ml/img/dog")

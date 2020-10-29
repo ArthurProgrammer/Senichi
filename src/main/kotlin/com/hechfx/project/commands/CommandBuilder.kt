@@ -6,6 +6,7 @@ abstract class CommandBuilder(
         @NotNull val name: String,
         val aliases: Array<String>,
         val description: String,
+        val category: String,
         val dev: Boolean? = false,
         val onlyOnMainGuild: Boolean? = false
 ) {
